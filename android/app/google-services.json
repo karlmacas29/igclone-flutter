@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "622115718239",
+    "project_id": "instagram-clone-macas",
+    "storage_bucket": "instagram-clone-macas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622115718239:android:dbcf317a40c535794347ea",
+        "android_client_info": {
+          "package_name": "com.macas.igclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqazlZjweE7sL_DCuOyyRBIc43Cr0iOiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
