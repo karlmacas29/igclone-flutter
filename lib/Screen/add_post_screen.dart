@@ -106,13 +106,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
     final UserModel user = Provider.of<UserProvider>(context).getUser;
 
     return _file == null
-        ? Center(
-            child: IconButton(
-              icon: const Icon(FontAwesomeIcons.upload),
-              onPressed: () => _selectImage(context),
+        ? Scaffold(
+            backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
+            body: Center(
+              child: IconButton(
+                icon: const Icon(FontAwesomeIcons.upload),
+                onPressed: () => _selectImage(context),
+              ),
             ),
           )
         : Scaffold(
+            backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
             appBar: AppBar(
               backgroundColor: Colors.white,
               leading: IconButton(

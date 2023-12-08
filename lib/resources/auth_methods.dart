@@ -31,6 +31,7 @@ class AuthMethods {
           password.isNotEmpty ||
           username.isNotEmpty ||
           bio.isNotEmpty ||
+          // ignore: unnecessary_null_comparison
           file != null) {
         //register
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
@@ -55,6 +56,7 @@ class AuthMethods {
             .set(user.toJson());
 
         res = "success";
+        // ignore: unnecessary_null_comparison
       } else if (file == null) {
         res = "Please Input Your Picture";
       } else {

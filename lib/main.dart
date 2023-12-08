@@ -4,9 +4,8 @@ import 'package:igclone/Responsive/mobile_screen_layout.dart';
 import 'package:igclone/Responsive/responsive_layout_screen.dart';
 import 'package:igclone/Responsive/web_screen_layout.dart';
 import 'package:igclone/Screen/login_screen.dart';
-import 'package:igclone/Screen/signup_screen.dart';
+
 import 'package:igclone/providers/user_provider.dart';
-import 'package:igclone/utils/colors.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';

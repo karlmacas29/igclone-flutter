@@ -51,6 +51,7 @@ class _WebViewState extends State<WebView> {
           ),
           actions: [
             IconButton(
+              tooltip: 'Home',
               icon: Icon(
                 FontAwesomeIcons.house,
                 color: _page == 0 ? blueColor : mobileBackground,
@@ -58,6 +59,7 @@ class _WebViewState extends State<WebView> {
               onPressed: () => navigationTapped(0),
             ),
             IconButton(
+              tooltip: 'Search',
               icon: Icon(
                 FontAwesomeIcons.magnifyingGlass,
                 color: _page == 1 ? blueColor : mobileBackground,
@@ -65,6 +67,7 @@ class _WebViewState extends State<WebView> {
               onPressed: () => navigationTapped(1),
             ),
             IconButton(
+              tooltip: 'Add Post',
               icon: Icon(
                 FontAwesomeIcons.circlePlus,
                 color: _page == 2 ? blueColor : mobileBackground,
@@ -72,6 +75,7 @@ class _WebViewState extends State<WebView> {
               onPressed: () => navigationTapped(2),
             ),
             IconButton(
+              tooltip: 'Notification',
               icon: Icon(
                 FontAwesomeIcons.solidHeart,
                 color: _page == 3 ? blueColor : mobileBackground,
@@ -79,6 +83,7 @@ class _WebViewState extends State<WebView> {
               onPressed: () => navigationTapped(3),
             ),
             IconButton(
+              tooltip: 'Profile',
               icon: Icon(
                 FontAwesomeIcons.solidUser,
                 color: _page == 4 ? blueColor : mobileBackground,

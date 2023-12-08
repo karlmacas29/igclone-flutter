@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/Responsive/mobile_screen_layout.dart';
 import 'package:igclone/Responsive/responsive_layout_screen.dart';
 import 'package:igclone/Responsive/web_screen_layout.dart';
+import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/Screen/login_screen.dart';
 import 'package:igclone/resources/auth_methods.dart';
 import 'package:igclone/utils/colors.dart';
@@ -183,9 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(4)))),
                 child: _isLoading
                     ? const Center(
-                        child: CircularProgressIndicator(
-                          color: primaryColor,
-                        ),
+                        child: ProgressAnimation(),
                       )
                     : const Text(
                         "Create Account",

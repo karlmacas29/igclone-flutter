@@ -42,6 +42,7 @@ class _MobileViewState extends State<MobileView> {
     //UserModel user = Provider.of<UserProvider>(context).getUser;
 
     return Scaffold(
+      extendBody: true,
       body: PageView(
         //disable scroll next page
         physics: const NeverScrollableScrollPhysics(),
@@ -49,53 +50,59 @@ class _MobileViewState extends State<MobileView> {
         onPageChanged: onPageChanged,
         children: homeScreenItems,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: primaryColor,
-        type: BottomNavigationBarType.fixed,
-        iconSize: 25,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.house,
-                color: _page == 0 ? blueColor : mobileBackground,
-              ),
-              label: '',
-              tooltip: 'Home',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.magnifyingGlass,
-                color: _page == 1 ? blueColor : mobileBackground,
-              ),
-              label: '',
-              tooltip: 'Search',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.circlePlus,
-                color: _page == 2 ? blueColor : mobileBackground,
-              ),
-              label: '',
-              tooltip: 'Post',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.solidHeart,
-                color: _page == 3 ? blueColor : mobileBackground,
-              ),
-              label: '',
-              tooltip: 'Notification',
-              backgroundColor: primaryColor),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FontAwesomeIcons.solidUser,
-                color: _page == 4 ? blueColor : mobileBackground,
-              ),
-              label: '',
-              tooltip: 'profile',
-              backgroundColor: primaryColor),
-        ],
-        onTap: navigationTapped,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: primaryColor,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 25,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.house,
+                  color: _page == 0 ? blueColor : mobileBackground,
+                ),
+                label: '',
+                tooltip: 'Home',
+                backgroundColor: primaryColor),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  color: _page == 1 ? blueColor : mobileBackground,
+                ),
+                label: '',
+                tooltip: 'Search',
+                backgroundColor: primaryColor),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.circlePlus,
+                  color: _page == 2 ? blueColor : mobileBackground,
+                ),
+                label: '',
+                tooltip: 'Add Post',
+                backgroundColor: primaryColor),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.solidHeart,
+                  color: _page == 3 ? blueColor : mobileBackground,
+                ),
+                label: '',
+                tooltip: 'Notification',
+                backgroundColor: primaryColor),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FontAwesomeIcons.solidUser,
+                  color: _page == 4 ? blueColor : mobileBackground,
+                ),
+                label: '',
+                tooltip: 'Profile',
+                backgroundColor: primaryColor),
+          ],
+          onTap: navigationTapped,
+        ),
       ),
     );
   }

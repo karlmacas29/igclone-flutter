@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/Screen/profile_screen.dart';
 import 'package:igclone/utils/colors.dart';
 
@@ -25,7 +26,9 @@ class _SearcScreenState extends State<SearcScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: primaryColor,
           title: TextFormField(
             controller: searchCon,
@@ -48,12 +51,12 @@ class _SearcScreenState extends State<SearcScreen> {
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: LoadingScreenAnimation(),
                     );
                   } else if (snapshot.connectionState ==
                       ConnectionState.waiting) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: LoadingScreenAnimation(),
                     );
                   }
 
@@ -87,7 +90,7 @@ class _SearcScreenState extends State<SearcScreen> {
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: LoadingScreenAnimation(),
                     );
                   }
 

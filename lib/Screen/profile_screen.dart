@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/Screen/login_screen.dart';
 import 'package:igclone/resources/auth_methods.dart';
 import 'package:igclone/resources/firestore_methods.dart';
@@ -70,10 +71,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: LoadingScreenAnimation(),
           )
         : Scaffold(
+            backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
             appBar: AppBar(
+              elevation: 0,
               backgroundColor: Colors.white,
               title: Text(
                 userData['username'],
@@ -204,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: LoadingScreenAnimation(),
                         );
                       }
                       return GridView.builder(

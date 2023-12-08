@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/models/user_model.dart';
 import 'package:igclone/providers/user_provider.dart';
 import 'package:igclone/resources/firestore_methods.dart';
@@ -29,7 +30,10 @@ class _CommentScreenState extends State<CommentScreen> {
   Widget build(BuildContext context) {
     UserModel user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
+      extendBody: true,
+      backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
       appBar: AppBar(
+        elevation: 1,
         backgroundColor: primaryColor,
         leading: IconButton(
             onPressed: () {
@@ -53,8 +57,8 @@ class _CommentScreenState extends State<CommentScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return const Center(
+              child: LoadingScreenAnimation(),
             );
           }
           return ListView.builder(
