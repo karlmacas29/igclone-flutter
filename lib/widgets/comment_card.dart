@@ -31,10 +31,15 @@ class _CommentCardState extends State<CommentCard> {
                   RichText(
                       text: TextSpan(children: [
                     TextSpan(
-                        text: '${widget.snap['username']} ',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                      text: '${widget.snap['username']} ',
+                      style: const TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
                     TextSpan(
                       text: widget.snap['text'],
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                   ])),
                   Padding(
