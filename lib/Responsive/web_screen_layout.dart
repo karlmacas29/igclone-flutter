@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:igclone/utils/colors.dart';
 import 'package:igclone/utils/dimension.dart';
+import 'package:igclone/widgets/gradient_icon.dart';
 
 class WebView extends StatefulWidget {
   const WebView({super.key});
@@ -52,42 +52,95 @@ class _WebViewState extends State<WebView> {
           actions: [
             IconButton(
               tooltip: 'Home',
-              icon: Icon(
-                FontAwesomeIcons.house,
-                color: _page == 0 ? blueColor : mobileBackground,
-              ),
+              icon: _page == 0
+                  ? const GradientIcon(
+                      icon: FontAwesomeIcons.house,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(76, 104, 215, 1),
+                          Color.fromRGBO(205, 72, 107, 1)
+                        ],
+                      ),
+                      size: 22,
+                    )
+                  : const Icon(FontAwesomeIcons.house, color: Colors.black),
               onPressed: () => navigationTapped(0),
             ),
             IconButton(
               tooltip: 'Search',
-              icon: Icon(
-                FontAwesomeIcons.magnifyingGlass,
-                color: _page == 1 ? blueColor : mobileBackground,
-              ),
+              icon: _page == 1
+                  ? const GradientIcon(
+                      icon: FontAwesomeIcons.magnifyingGlass,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(76, 104, 215, 1),
+                          Color.fromRGBO(205, 72, 107, 1)
+                        ],
+                      ),
+                      size: 22,
+                    )
+                  : const Icon(FontAwesomeIcons.magnifyingGlass,
+                      color: Colors.black),
               onPressed: () => navigationTapped(1),
             ),
             IconButton(
               tooltip: 'Add Post',
-              icon: Icon(
-                FontAwesomeIcons.circlePlus,
-                color: _page == 2 ? blueColor : mobileBackground,
-              ),
+              icon: _page == 2
+                  ? const GradientIcon(
+                      icon: FontAwesomeIcons.circlePlus,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(76, 104, 215, 1),
+                          Color.fromRGBO(205, 72, 107, 1)
+                        ],
+                      ),
+                      size: 22,
+                    )
+                  : const Icon(FontAwesomeIcons.circlePlus,
+                      color: Colors.black),
               onPressed: () => navigationTapped(2),
             ),
             IconButton(
               tooltip: 'Notification',
-              icon: Icon(
-                FontAwesomeIcons.solidHeart,
-                color: _page == 3 ? blueColor : mobileBackground,
-              ),
+              icon: _page == 3
+                  ? const GradientIcon(
+                      icon: FontAwesomeIcons.solidHeart,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(76, 104, 215, 1),
+                          Color.fromRGBO(205, 72, 107, 1)
+                        ],
+                      ),
+                      size: 22,
+                    )
+                  : const Icon(FontAwesomeIcons.solidHeart,
+                      color: Colors.black),
               onPressed: () => navigationTapped(3),
             ),
             IconButton(
               tooltip: 'Profile',
-              icon: Icon(
-                FontAwesomeIcons.solidUser,
-                color: _page == 4 ? blueColor : mobileBackground,
-              ),
+              icon: _page == 4
+                  ? const GradientIcon(
+                      icon: FontAwesomeIcons.solidUser,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromRGBO(76, 104, 215, 1),
+                          Color.fromRGBO(205, 72, 107, 1)
+                        ],
+                      ),
+                      size: 22,
+                    )
+                  : const Icon(FontAwesomeIcons.solidUser, color: Colors.black),
               onPressed: () => navigationTapped(4),
             ),
           ],

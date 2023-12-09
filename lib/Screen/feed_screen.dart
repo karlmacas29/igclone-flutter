@@ -17,18 +17,12 @@ class FeedScreen extends StatelessWidget {
           : AppBar(
               elevation: 0,
               backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
-              centerTitle: false,
-              leading: const Icon(
+              centerTitle: true,
+              title: const Icon(
                 FontAwesomeIcons.instagram,
                 color: Colors.black,
+                size: 30,
               ),
-              actions: [
-                IconButton(
-                  icon:
-                      const Icon(FontAwesomeIcons.message, color: Colors.black),
-                  onPressed: () {},
-                )
-              ],
             ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('posts').snapshots(),

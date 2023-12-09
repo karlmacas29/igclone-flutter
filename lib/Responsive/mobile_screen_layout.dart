@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:igclone/utils/colors.dart';
 import 'package:igclone/utils/dimension.dart';
+import 'package:igclone/widgets/gradient_icon.dart';
 
 class MobileView extends StatefulWidget {
   const MobileView({super.key});
@@ -61,42 +62,96 @@ class _MobileViewState extends State<MobileView> {
           iconSize: 25,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.house,
-                  color: _page == 0 ? blueColor : mobileBackground,
-                ),
+                icon: _page == 0
+                    ? const GradientIcon(
+                        icon: FontAwesomeIcons.house,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(76, 104, 215, 1),
+                            Color.fromRGBO(205, 72, 107, 1)
+                          ],
+                        ),
+                        size: 24,
+                      )
+                    : const Icon(FontAwesomeIcons.house, color: Colors.black),
                 label: '',
                 tooltip: 'Home',
                 backgroundColor: primaryColor),
             BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.magnifyingGlass,
-                  color: _page == 1 ? blueColor : mobileBackground,
-                ),
+                icon: _page == 1
+                    ? const GradientIcon(
+                        icon: FontAwesomeIcons.magnifyingGlass,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(76, 104, 215, 1),
+                            Color.fromRGBO(205, 72, 107, 1)
+                          ],
+                        ),
+                        size: 24,
+                      )
+                    : const Icon(FontAwesomeIcons.magnifyingGlass,
+                        color: Colors.black),
                 label: '',
                 tooltip: 'Search',
                 backgroundColor: primaryColor),
             BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.circlePlus,
-                  color: _page == 2 ? blueColor : mobileBackground,
-                ),
+                icon: _page == 2
+                    ? const GradientIcon(
+                        icon: FontAwesomeIcons.circlePlus,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(76, 104, 215, 1),
+                            Color.fromRGBO(205, 72, 107, 1)
+                          ],
+                        ),
+                        size: 24,
+                      )
+                    : const Icon(FontAwesomeIcons.circlePlus,
+                        color: Colors.black),
                 label: '',
                 tooltip: 'Add Post',
                 backgroundColor: primaryColor),
             BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.solidHeart,
-                  color: _page == 3 ? blueColor : mobileBackground,
-                ),
+                icon: _page == 3
+                    ? const GradientIcon(
+                        icon: FontAwesomeIcons.solidHeart,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(76, 104, 215, 1),
+                            Color.fromRGBO(205, 72, 107, 1)
+                          ],
+                        ),
+                        size: 24,
+                      )
+                    : const Icon(FontAwesomeIcons.solidHeart,
+                        color: Colors.black),
                 label: '',
                 tooltip: 'Notification',
                 backgroundColor: primaryColor),
             BottomNavigationBarItem(
-                icon: Icon(
-                  FontAwesomeIcons.solidUser,
-                  color: _page == 4 ? blueColor : mobileBackground,
-                ),
+                icon: _page == 4
+                    ? const GradientIcon(
+                        icon: FontAwesomeIcons.solidUser,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(76, 104, 215, 1),
+                            Color.fromRGBO(205, 72, 107, 1)
+                          ],
+                        ),
+                        size: 24,
+                      )
+                    : const Icon(FontAwesomeIcons.solidUser,
+                        color: Colors.black),
                 label: '',
                 tooltip: 'Profile',
                 backgroundColor: primaryColor),
