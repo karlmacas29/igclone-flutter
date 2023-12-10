@@ -1,16 +1,20 @@
 # Instagram Clone Using Flutter
 
-A new Flutter project.
+Instagram Clone Using Flutter
+Created by me Karl
 
-## Getting Started
+## Features
+- Post
+- Followers/following
+- unique UI
+- comments and likes
+- search user
 
-This project is a starting point for a Flutter application.
+## This App is Working Progress and tons of bugs so be careful.
 
-A few resources to get you started if this is your first Flutter project:
+## Ui Preview
+![Screenshot_20231210_012624](https://github.com/karlmacas29/igclone-flutter/assets/83496597/f13ee3a1-aa4b-4dd6-9a09-f31cc42b8265)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tutorials
+- Instagram Clone
+https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
