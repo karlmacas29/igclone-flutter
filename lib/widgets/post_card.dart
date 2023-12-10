@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/Screen/comment_screen.dart';
@@ -98,31 +99,39 @@ class _PostCardState extends State<PostCard> {
                       showDialog(
                         context: context,
                         builder: (context) => Dialog(
-                          child: ListView(
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                            ),
-                            children: [
-                              'Delete',
-                            ]
-                                .map(
-                                  (e) => InkWell(
-                                    onTap: () async {
-                                      FirestoreMethod()
-                                          .deletePost(widget.snap['postID']);
-                                      Navigator.of(context).pop();
-                                      showSnackBar('Post Delete', context);
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12, horizontal: 16),
-                                      child: Text(e),
-                                    ),
+                          insetAnimationCurve: Curves.bounceInOut,
+                          child: widget.snap['uid'] ==
+                                  FirebaseAuth.instance.currentUser!.uid
+                              ? ListView(
+                                  shrinkWrap: true,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
                                   ),
-                                )
-                                .toList(),
-                          ),
+                                  children: [
+                                      SimpleDialogOption(
+                                        onPressed: () async {
+                                          await FirestoreMethod().deletePost(
+                                              widget.snap['postID']);
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('Delete'),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: Navigator.of(context).pop,
+                                        child: const Text('Cancel'),
+                                      )
+                                    ])
+                              : ListView(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 12),
+                                  shrinkWrap: true,
+                                  children: [
+                                    SimpleDialogOption(
+                                      onPressed: Navigator.of(context).pop,
+                                      child: const Text('Cancel'),
+                                    )
+                                  ],
+                                ),
                         ),
                       );
                     },

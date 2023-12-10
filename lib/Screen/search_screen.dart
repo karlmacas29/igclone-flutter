@@ -28,6 +28,7 @@ class _SearcScreenState extends State<SearcScreen> {
     return Scaffold(
         backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: primaryColor,
           title: TextFormField(

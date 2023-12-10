@@ -26,6 +26,32 @@ class _CommentScreenState extends State<CommentScreen> {
     _commController.dispose();
   }
 
+  late Stream<QuerySnapshot<Map<String, dynamic>>> _stream;
+
+  @override
+  void initState() {
+    super.initState();
+    // Assign the stream variable to the firebase collection snapshots stream
+    _stream = FirebaseFirestore.instance
+        .collection('posts')
+        .doc(widget.snap['postID'])
+        .collection('comments')
+        .orderBy('datePublished', descending: true)
+        .snapshots();
+  }
+
+  // Define a function that returns a Future<void> and updates the stream variable
+  Future<void> _refreshData() async {
+    setState(() {
+      _stream = FirebaseFirestore.instance
+          .collection('posts')
+          .doc(widget.snap['postID'])
+          .collection('comments')
+          .orderBy('datePublished', descending: true)
+          .snapshots();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     UserModel user = Provider.of<UserProvider>(context).getUser;
@@ -61,10 +87,16 @@ class _CommentScreenState extends State<CommentScreen> {
               child: LoadingScreenAnimation(),
             );
           }
-          return ListView.builder(
-            itemCount: (snapshot.data! as dynamic).docs.length,
-            itemBuilder: (context, index) => CommentCard(
-              snap: (snapshot.data! as dynamic).docs[index].data(),
+          return RefreshIndicator(
+            onRefresh: _refreshData,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              itemCount: (snapshot.data! as dynamic).docs.length,
+              itemBuilder: (context, index) => CommentCard(
+                snap: (snapshot.data! as dynamic).docs[index].data(),
+              ),
             ),
           );
         },
