@@ -107,7 +107,7 @@ class _CommentScreenState extends State<CommentScreen> {
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        padding: EdgeInsets.only(left: 16, right: 8),
+        padding: const EdgeInsets.only(left: 16, right: 8),
         child: Row(children: [
           CircleAvatar(
             backgroundImage: NetworkImage(user.photoURL),
@@ -115,7 +115,7 @@ class _CommentScreenState extends State<CommentScreen> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: 16, right: 8),
+              padding: const EdgeInsets.only(left: 16, right: 8),
               child: TextField(
                 controller: _commController,
                 decoration: InputDecoration(

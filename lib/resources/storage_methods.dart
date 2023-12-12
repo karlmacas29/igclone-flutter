@@ -31,4 +31,27 @@ class StorageMethods {
 
     return downloadURL;
   }
+
+  Future<String> updateImageToStorage(
+    String childName,
+    String oldUrl,
+    Uint8List file,
+    bool isPost,
+  ) async {
+    //delete the old image first
+    await deleteImageFromStorage(oldUrl);
+
+    //upload the new image
+    return await uploadImageToStorage(childName, file, isPost);
+  }
+
+  //delete image
+
+  Future<void> deleteImageFromStorage(String url) async {
+    //get the reference of the image from the url
+    Reference ref = _storage.refFromURL(url);
+
+    //delete the image
+    await ref.delete();
+  }
 }

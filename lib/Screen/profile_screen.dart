@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:igclone/Screen/edit_user.dart';
 import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/Screen/login_screen.dart';
+import 'package:igclone/Screen/view_image_bypost.dart';
 import 'package:igclone/resources/auth_methods.dart';
 import 'package:igclone/resources/firestore_methods.dart';
 import 'package:igclone/utils/colors.dart';
@@ -34,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     getData();
     _stream = FirebaseFirestore.instance.collection('users').snapshots();
     _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+    FirebaseAuth.instance.currentUser!.uid;
   }
 
   getData() async {
@@ -75,6 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _stream = FirebaseFirestore.instance.collection('users').snapshots();
       _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+      FirebaseAuth.instance.currentUser!.uid;
     });
   }
 
@@ -90,13 +94,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
               backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
               appBar: AppBar(
                 automaticallyImplyLeading: false,
+                actions: [
+                  FirebaseAuth.instance.currentUser!.uid == widget.uid
+                      ? IconButton(
+                          onPressed: () async {
+                            String res = await AuthMethods().signOutAccount();
+                            if (res == "success") {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ),
+                              );
+                              setState(() {
+                                userData = {};
+                              });
+                              showSnackBar("Sign Out", context);
+                            } else {
+                              showSnackBar(res, context);
+                            }
+                          },
+                          icon: const Icon(
+                            FontAwesomeIcons.rightFromBracket,
+                            color: Colors.black,
+                          ),
+                        )
+                      : const Padding(
+                          padding: EdgeInsets.only(right: 20),
+                          child: Icon(
+                            FontAwesomeIcons.user,
+                            color: Colors.black,
+                          ),
+                        )
+                ],
                 elevation: 0,
                 backgroundColor: Colors.white,
-                title: Text(
-                  userData['username'],
-                  style: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
+                title: Row(children: [
+                  FirebaseAuth.instance.currentUser!.uid == widget.uid
+                      ? const Text('')
+                      : IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(
+                            FontAwesomeIcons.arrowLeft,
+                            color: Colors.black,
+                          ),
+                        ),
+                  Text(
+                    userData['username'],
+                    style: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  )
+                ]),
                 centerTitle: false,
               ),
               body: ListView(
@@ -134,21 +183,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       FirebaseAuth.instance.currentUser!.uid ==
                                               widget.uid
                                           ? FollowButton(
-                                              text: 'Sign Out',
+                                              text: 'Edit Profile',
                                               backgroundColor: primaryColor,
                                               textColor: mobileBackground,
                                               borderColor: Colors.grey,
                                               function: () async {
-                                                await AuthMethods().signOut();
-                                                Navigator.of(context)
-                                                    .pushReplacement(
+                                                Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const LoginScreen(),
+                                                        UpdateUser(
+                                                      bio: userData['bio'],
+                                                      uid: userData['uid'],
+                                                      oldUrl:
+                                                          userData['photoURL'],
+                                                      username:
+                                                          userData['username'],
+                                                    ),
                                                   ),
                                                 );
-                                                showSnackBar(
-                                                    "Sign Out", context);
                                               },
                                             )
                                           : isFollowing
@@ -247,11 +299,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             DocumentSnapshot snap =
                                 (snapshot.data! as dynamic).docs[index];
                             return Container(
-                              child: Image(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    (snap['postURL']),
-                                  )),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => ViewPostImage(
+                                        pid: snapshot.data!.docs[index].data(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Image(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      (snap['postURL']),
+                                    )),
+                              ),
                             );
                           },
                         );

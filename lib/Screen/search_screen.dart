@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/Screen/loading_animation.dart';
 import 'package:igclone/Screen/profile_screen.dart';
+import 'package:igclone/Screen/view_image_bypost.dart';
 import 'package:igclone/utils/colors.dart';
 
 class SearcScreen extends StatefulWidget {
@@ -98,8 +99,19 @@ class _SearcScreenState extends State<SearcScreen> {
                   return StaggeredGridView.countBuilder(
                     crossAxisCount: 3,
                     itemCount: (snapshot.data! as dynamic).docs.length,
-                    itemBuilder: (context, index) => Image.network(
-                        (snapshot.data! as dynamic).docs[index]['postURL']),
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ViewPostImage(
+                              pid: snapshot.data!.docs[index].data(),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Image.network(
+                          (snapshot.data! as dynamic).docs[index]['postURL']),
+                    ),
                     staggeredTileBuilder: (index) => StaggeredTile.count(
                         (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
                     mainAxisSpacing: 8,

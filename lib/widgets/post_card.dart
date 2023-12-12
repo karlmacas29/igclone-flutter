@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/Screen/comment_screen.dart';
+import 'package:igclone/Screen/profile_screen.dart';
+import 'package:igclone/Screen/update_post_card.dart';
+import 'package:igclone/Screen/view_image.dart';
 import 'package:igclone/models/user_model.dart';
 import 'package:igclone/providers/user_provider.dart';
 import 'package:igclone/resources/firestore_methods.dart';
@@ -67,9 +70,18 @@ class _PostCardState extends State<PostCard> {
                 .copyWith(right: 0),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(widget.snap['profImage']),
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ProfileScreen(
+                        uid: widget.snap['uid'],
+                      ),
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(widget.snap['profImage']),
+                  ),
                 ),
                 Expanded(
                   child: Padding(
@@ -78,18 +90,42 @@ class _PostCardState extends State<PostCard> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.snap['username'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          DateFormat.yMMMd()
-                              .format(widget.snap['datePublished'].toDate()),
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: secondaryColor,
+                        InkWell(
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(
+                                uid: widget.snap['uid'],
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            widget.snap['username'],
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
+                        Row(
+                          children: [
+                            Text(
+                              DateFormat.yMMMd().format(
+                                  widget.snap['datePublished'].toDate()),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              DateFormat.jm().format(
+                                  widget.snap['datePublished'].toDate()),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: secondaryColor,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -105,16 +141,32 @@ class _PostCardState extends State<PostCard> {
                               ? ListView(
                                   shrinkWrap: true,
                                   padding: const EdgeInsets.symmetric(
-                                    vertical: 16,
-                                  ),
+                                      vertical: 16, horizontal: 12),
                                   children: [
                                       SimpleDialogOption(
                                         onPressed: () async {
                                           await FirestoreMethod().deletePost(
                                               widget.snap['postID']);
                                           Navigator.of(context).pop();
+                                          showSnackBar('Post Deleted', context);
                                         },
                                         child: const Text('Delete'),
+                                      ),
+                                      SimpleDialogOption(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => UpdatePost(
+                                                file: widget.snap['postURL'],
+                                                description:
+                                                    widget.snap['description'],
+                                                pid: widget.snap['postID'],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: const Text('Edit'),
                                       ),
                                       SimpleDialogOption(
                                         onPressed: Navigator.of(context).pop,
@@ -140,6 +192,15 @@ class _PostCardState extends State<PostCard> {
             ),
           ),
           GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ImageView(
+                    file: widget.snap['postURL'],
+                  ),
+                ),
+              );
+            },
             onDoubleTap: () async {
               await FirestoreMethod().likePost(
                   widget.snap['postID'], user.uid, widget.snap['likes']);

@@ -109,7 +109,51 @@ class AuthMethods {
     return res;
   }
 
-  Future<void> signOut() async {
-    await _auth.signOut();
+  Future<String> signOutAccount() async {
+    String res = "Some error Occured";
+    try {
+      await _auth.signOut();
+      res = "success";
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
+  Future<String> updateUser(
+    String uid,
+    String username,
+    String bio,
+  ) async {
+    String res = "Some Error Occured";
+    try {
+      Map<String, dynamic> data = {
+        'username': username,
+        'bio': bio,
+      };
+
+      await _firestore.collection('users').doc(uid).update(data);
+
+      // Get the post document by uid using where clause
+      QuerySnapshot postQuery = await _firestore
+          .collection('posts')
+          .where('uid', isEqualTo: uid)
+          .get();
+
+      // Check if the query has any documents
+      if (postQuery.docs.isNotEmpty) {
+        // Get the first document from the query
+        for (DocumentSnapshot postDoc in postQuery.docs) {
+          await postDoc.reference.update({'username': username});
+        }
+
+        // Update the profImage field with the user's photoURL
+      }
+
+      res = "success";
+    } catch (e) {
+      print(e.toString());
+    }
+    return res;
   }
 }

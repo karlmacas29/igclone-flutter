@@ -21,13 +21,19 @@ class _FeedScreenState extends State<FeedScreen> {
   void initState() {
     super.initState();
     // Assign the stream variable to the firebase collection snapshots stream
-    _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+    _stream = FirebaseFirestore.instance
+        .collection('posts')
+        .orderBy('datePublished', descending: true)
+        .snapshots();
   }
 
   // Define a function that returns a Future<void> and updates the stream variable
   Future<void> _refreshData() async {
     setState(() {
-      _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+      _stream = FirebaseFirestore.instance
+          .collection('posts')
+          .orderBy('datePublished', descending: true)
+          .snapshots();
     });
   }
 
@@ -49,14 +55,17 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
             ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .orderBy('datePublished', descending: true)
+            .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: LoadingScreenAnimation(),
             );
-          } else if (snapshot.hasError) {
+          } else if (snapshot.data == null) {
             return const Center(
               child: LoadingScreenAnimation(),
             );
@@ -65,24 +74,24 @@ class _FeedScreenState extends State<FeedScreen> {
           return RefreshIndicator(
             onRefresh: _refreshData,
             child: ListView.builder(
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.symmetric(
-                        horizontal:
-                            MediaQuery.of(context).size.width > webScreenSize
-                                ? MediaQuery.of(context).size.width * 0.3
-                                : 10,
-                        vertical:
-                            MediaQuery.of(context).size.width > webScreenSize
-                                ? 15
-                                : 5,
-                      ),
-                      child: PostCard(
-                        snap: snapshot.data!.docs[index].data(),
-                      ),
-                    )),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width > webScreenSize
+                      ? MediaQuery.of(context).size.width * 0.3
+                      : 10,
+                  vertical: MediaQuery.of(context).size.width > webScreenSize
+                      ? 15
+                      : 5,
+                ),
+                child: PostCard(
+                  snap: snapshot.data!.docs[index].data(),
+                ),
+              ),
+            ),
           );
         },
       ),
