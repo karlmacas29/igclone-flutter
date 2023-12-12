@@ -36,7 +36,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     getData();
     _stream = FirebaseFirestore.instance.collection('users').snapshots();
     _stream = FirebaseFirestore.instance.collection('posts').snapshots();
-    FirebaseAuth.instance.currentUser!.uid;
   }
 
   getData() async {
@@ -53,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       var postsnap = await FirebaseFirestore.instance
           .collection('posts')
-          .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .where('uid', isEqualTo: widget.uid)
           .get();
 
       postLen = postsnap.docs.length;
@@ -78,7 +77,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _stream = FirebaseFirestore.instance.collection('users').snapshots();
       _stream = FirebaseFirestore.instance.collection('posts').snapshots();
-      FirebaseAuth.instance.currentUser!.uid;
     });
   }
 
@@ -98,20 +96,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   FirebaseAuth.instance.currentUser!.uid == widget.uid
                       ? IconButton(
                           onPressed: () async {
-                            String res = await AuthMethods().signOutAccount();
-                            if (res == "success") {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
-                                ),
-                              );
-                              setState(() {
-                                userData = {};
-                              });
-                              showSnackBar("Sign Out", context);
-                            } else {
-                              showSnackBar(res, context);
-                            }
+                            await AuthMethods().signOutAccount();
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ),
+                            );
+                            showSnackBar("Sign Out", context);
                           },
                           icon: const Icon(
                             FontAwesomeIcons.rightFromBracket,

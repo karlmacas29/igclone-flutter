@@ -109,15 +109,13 @@ class AuthMethods {
     return res;
   }
 
-  Future<String> signOutAccount() async {
-    String res = "Some error Occured";
+  Future<void> signOutAccount() async {
     try {
       await _auth.signOut();
-      res = "success";
+      await _auth.currentUser!.reload();
     } catch (e) {
-      res = e.toString();
+      print(e.toString());
     }
-    return res;
   }
 
   Future<String> updateUser(

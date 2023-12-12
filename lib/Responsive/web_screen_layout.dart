@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:igclone/Screen/add_post_screen.dart';
+import 'package:igclone/Screen/feed_screen.dart';
+import 'package:igclone/Screen/profile_screen.dart';
+import 'package:igclone/Screen/search_screen.dart';
 import 'package:igclone/utils/dimension.dart';
 import 'package:igclone/widgets/gradient_icon.dart';
 
@@ -148,7 +153,15 @@ class _WebViewState extends State<WebView> {
         body: PageView(
           controller: pageCon,
           onPageChanged: onPageChanged,
-          children: homeScreenItems,
+          children: [
+            const FeedScreen(),
+            const SearcScreen(),
+            const AddPostScreen(),
+            const Center(child: Text("Working Progress...")),
+            ProfileScreen(
+              uid: FirebaseAuth.instance.currentUser!.uid,
+            ),
+          ],
         ));
   }
 }

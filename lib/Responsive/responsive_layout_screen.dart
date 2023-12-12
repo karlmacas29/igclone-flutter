@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:igclone/providers/user_provider.dart';
 import 'package:igclone/utils/dimension.dart';
