@@ -1,4 +1,4 @@
-# Instagram Clone Using Flutter
+# Instagram Clone Using Flutter and Firebase 
 
 Instagram Clone Using Flutter
 Created by me Karl
@@ -9,6 +9,11 @@ Created by me Karl
 - unique UI
 - comments and likes
 - search user
+
+## Firebase Using
+- Auth
+- Storage
+- Database
 
 ## This App is Working Progress and tons of bugs so be careful.
 
