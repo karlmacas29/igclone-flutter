@@ -13,7 +13,10 @@ Created by me Karl
 ## This App is Working Progress and tons of bugs so be careful.
 
 ## Ui Preview
-![Screenshot_20231210_012624](https://github.com/karlmacas29/igclone-flutter/assets/83496597/f13ee3a1-aa4b-4dd6-9a09-f31cc42b8265)
+![Screenshot_20231217_005728](https://github.com/karlmacas29/igclone-flutter/assets/83496597/87d5359a-f750-40cd-a4f0-79650641eedb)
+![Screenshot_20231217_005733](https://github.com/karlmacas29/igclone-flutter/assets/83496597/aa7984e5-d391-4965-9604-4629701bb848)
+![Screenshot_20231217_005741](https://github.com/karlmacas29/igclone-flutter/assets/83496597/79e9cadb-f7ec-41e3-abc3-6ae045d5dbf5)
+
 
 ## Tutorials
 - Instagram Clone
