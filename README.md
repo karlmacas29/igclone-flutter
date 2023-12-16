@@ -22,4 +22,5 @@ Created by me Karl
 - Instagram Clone
 https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 
-## Tester
+## Tester (Thanks for testing this app)
+- https://github.com/Vustron
