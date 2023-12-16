@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/Screen/comment_screen.dart';
@@ -150,10 +151,17 @@ class _PostCardState extends State<PostCard> {
                                           Navigator.of(context).pop();
                                           showSnackBar('Post Deleted', context);
                                         },
-                                        child: const Text('Delete'),
+                                        child: const Row(children: [
+                                          Icon(CupertinoIcons.trash),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text('Delete'),
+                                        ]),
                                       ),
                                       SimpleDialogOption(
                                         onPressed: () {
+                                          Navigator.of(context).pop();
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -166,11 +174,23 @@ class _PostCardState extends State<PostCard> {
                                             ),
                                           );
                                         },
-                                        child: const Text('Edit'),
+                                        child: const Row(children: [
+                                          Icon(CupertinoIcons.pen),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text('Edit'),
+                                        ]),
                                       ),
                                       SimpleDialogOption(
                                         onPressed: Navigator.of(context).pop,
-                                        child: const Text('Cancel'),
+                                        child: const Row(children: [
+                                          Icon(CupertinoIcons.xmark),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text('Cancel'),
+                                        ]),
                                       )
                                     ])
                               : ListView(
@@ -180,7 +200,13 @@ class _PostCardState extends State<PostCard> {
                                   children: [
                                     SimpleDialogOption(
                                       onPressed: Navigator.of(context).pop,
-                                      child: const Text('Cancel'),
+                                      child: const Row(children: [
+                                        Icon(CupertinoIcons.xmark),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text('Cancel'),
+                                      ]),
                                     )
                                   ],
                                 ),

@@ -78,6 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
               FontAwesomeIcons.instagram,
               size: 80,
             ),
+            const Text(
+              "InstaClone",
+              style: TextStyle(fontSize: 50, fontFamily: 'Billabong'),
+            ),
             const SizedBox(
               height: 40,
             ),

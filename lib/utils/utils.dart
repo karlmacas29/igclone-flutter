@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 
 pickImage(ImageSource source) async {
@@ -12,7 +14,11 @@ pickImage(ImageSource source) async {
 }
 
 showSnackBar(String content, BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(content),
-  ));
+  //Set an animation
+  showToast(
+    content,
+    context: context,
+    animation: StyledToastAnimation.slideFromBottom,
+    reverseAnimation: StyledToastAnimation.slideFromBottom,
+  );
 }

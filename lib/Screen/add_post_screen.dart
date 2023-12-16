@@ -48,46 +48,46 @@ class _AddPostScreenState extends State<AddPostScreen> {
     }
   }
 
-  _selectImage(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return SimpleDialog(
-            title: const Text("Create Post"),
-            children: [
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Take A Photo"),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  Uint8List file = await pickImage(ImageSource.camera);
-                  setState(() {
-                    _file = file;
-                  });
-                },
-              ),
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Choose From Gallery"),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  Uint8List file = await pickImage(ImageSource.gallery);
-                  setState(() {
-                    _file = file;
-                  });
-                },
-              ),
-              SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: const Text("Cancel"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        });
-  }
+  // _selectImage(BuildContext context) async {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return SimpleDialog(
+  //           title: const Text("Create Post"),
+  //           children: [
+  //             SimpleDialogOption(
+  //               padding: const EdgeInsets.all(20),
+  //               child: const Text("Take A Photo"),
+  //               onPressed: () async {
+  //                 Navigator.of(context).pop();
+  //                 Uint8List file = await pickImage(ImageSource.camera);
+  //                 setState(() {
+  //                   _file = file;
+  //                 });
+  //               },
+  //             ),
+  //             SimpleDialogOption(
+  //               padding: const EdgeInsets.all(20),
+  //               child: const Text("Choose From Gallery"),
+  //               onPressed: () async {
+  //                 Navigator.of(context).pop();
+  //                 Uint8List file = await pickImage(ImageSource.gallery);
+  //                 setState(() {
+  //                   _file = file;
+  //                 });
+  //               },
+  //             ),
+  //             SimpleDialogOption(
+  //               padding: const EdgeInsets.all(20),
+  //               child: const Text("Cancel"),
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //             )
+  //           ],
+  //         );
+  //       });
+  // }
 
   @override
   void dispose() {
@@ -107,17 +107,81 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
     return _file == null
         ? Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: primaryColor,
+              leading: IconButton(
+                icon: const Icon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: mobileBackground,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              title: const Text(
+                "Post",
+                style: TextStyle(color: mobileBackground),
+              ),
+              centerTitle: false,
+              automaticallyImplyLeading: true,
+            ),
             backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
             body: Center(
-              child: IconButton(
-                icon: const Icon(FontAwesomeIcons.upload),
-                onPressed: () => _selectImage(context),
-              ),
-            ),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    Uint8List file = await pickImage(ImageSource.camera);
+                    setState(() {
+                      _file = file;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(205, 72, 107, 1),
+                      fixedSize: const Size.fromHeight(50)),
+                  child: const Text(
+                    "Take A Photo",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    Uint8List file = await pickImage(ImageSource.gallery);
+                    setState(() {
+                      _file = file;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(205, 72, 107, 1),
+                      fixedSize: const Size.fromHeight(50)),
+                  child: const Text(
+                    "Choose From Gallery",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            )
+                // IconButton(
+                //   icon: const Icon(FontAwesomeIcons.upload),
+                //   onPressed: () => _selectImage(context),
+                // ),
+                ),
           )
+        //when choosing photo
         : Scaffold(
             backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
             appBar: AppBar(
+              elevation: 0,
               backgroundColor: Colors.white,
               leading: IconButton(
                 icon: const Icon(
@@ -146,7 +210,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
             body: Column(
               children: [
                 _isLoading
-                    ? const LinearProgressIndicator()
+                    ? const LinearProgressIndicator(
+                        backgroundColor: Color.fromRGBO(205, 72, 107, 1),
+                      )
                     : const Padding(padding: EdgeInsets.only(top: 0)),
                 const Divider(),
                 Row(

@@ -11,6 +11,7 @@ import 'package:igclone/resources/firestore_methods.dart';
 import 'package:igclone/utils/colors.dart';
 import 'package:igclone/utils/utils.dart';
 import 'package:igclone/widgets/follow_button.dart';
+import 'package:igclone/widgets/skeletal_load_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -83,13 +84,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? const Center(
-            child: LoadingScreenAnimation(),
-          )
+        ? const ProfLoad()
         : RefreshIndicator(
             onRefresh: _refreshData,
             child: Scaffold(
-              backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 automaticallyImplyLeading: false,
                 actions: [

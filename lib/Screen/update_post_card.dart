@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:igclone/models/user_model.dart';
@@ -25,6 +24,7 @@ class UpdatePost extends StatefulWidget {
 
 class _UpdatePostState extends State<UpdatePost> {
   final TextEditingController _descCon = TextEditingController();
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -58,10 +58,17 @@ class _UpdatePostState extends State<UpdatePost> {
         actions: [
           TextButton(
             onPressed: () async {
+              setState(() {
+                _isLoading = true;
+              });
               String res =
                   await FirestoreMethod().updatePost(_descCon.text, widget.pid);
               if (res == "success") {
                 showSnackBar('Update Success', context);
+
+                setState(() {
+                  _isLoading = false;
+                });
 
                 Navigator.pop(context);
               } else {
@@ -78,6 +85,11 @@ class _UpdatePostState extends State<UpdatePost> {
       body: Center(
         child: Column(
           children: [
+            _isLoading
+                ? const LinearProgressIndicator(
+                    backgroundColor: Color.fromRGBO(205, 72, 107, 1),
+                  )
+                : const Padding(padding: EdgeInsets.only(top: 0)),
             Container(
               height: kToolbarHeight,
               margin: EdgeInsets.only(

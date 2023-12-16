@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:igclone/Screen/loading_animation.dart';
+
 import 'package:igclone/utils/dimension.dart';
 import 'package:igclone/widgets/post_card.dart';
+import 'package:igclone/widgets/skeletal_load_card.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -48,10 +49,27 @@ class _FeedScreenState extends State<FeedScreen> {
               elevation: 0,
               backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
               centerTitle: true,
-              title: const Icon(
-                FontAwesomeIcons.instagram,
-                color: Colors.black,
-                size: 30,
+              title: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    FontAwesomeIcons.instagram,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "InstaClone",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'Billabong',
+                      color: Colors.black,
+                    ),
+                  )
+                ],
               ),
             ),
       body: StreamBuilder(
@@ -62,12 +80,15 @@ class _FeedScreenState extends State<FeedScreen> {
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: LoadingScreenAnimation(),
-            );
-          } else if (snapshot.data == null) {
-            return const Center(
-              child: LoadingScreenAnimation(),
+            return Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width > webScreenSize
+                    ? MediaQuery.of(context).size.width * 0.3
+                    : 10,
+                vertical:
+                    MediaQuery.of(context).size.width > webScreenSize ? 15 : 5,
+              ),
+              child: const SkeletalCard(),
             );
           }
 
@@ -87,9 +108,13 @@ class _FeedScreenState extends State<FeedScreen> {
                       ? 15
                       : 5,
                 ),
-                child: PostCard(
-                  snap: snapshot.data!.docs[index].data(),
-                ),
+                child: snapshot.connectionState == ConnectionState.waiting
+                    ? const SkeletalCard()
+                    : snapshot.connectionState == ConnectionState.done
+                        ? const SkeletalCard()
+                        : PostCard(
+                            snap: snapshot.data!.docs[index].data(),
+                          ),
               ),
             ),
           );
