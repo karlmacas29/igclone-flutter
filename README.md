@@ -1,5 +1,5 @@
 <h1 style="text-align: center;"> InstaClone: A Simple Social Media Instagram Clone Made in Flutter </h1>
-<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/4450f56c-8d7f-4132-b523-b986f841a76e" width="300" heigth="300" style="margin: 0 100%">
+<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/4450f56c-8d7f-4132-b523-b986f841a76e" width="300" heigth="300"">
 
 ## Overview
 
@@ -60,8 +60,8 @@ persons.
 
 ## User Interface
 <b>Sign In and Sign Up</b>
-<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/bb563481-0643-4798-8ec2-64d16ee6680d" width="400" heigth="650">
-<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/a2cfbb63-7bb8-4c91-a63b-d2691ec557b1" width="400" heigth="650">
+<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/bb563481-0643-4798-8ec2-64d16ee6680d" width="200" heigth="450">
+<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/a2cfbb63-7bb8-4c91-a63b-d2691ec557b1" width="200" heigth="450">
 
 
 
