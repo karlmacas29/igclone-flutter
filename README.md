@@ -1,4 +1,5 @@
-<center><b> Instagram Clone Using Flutter and Firebase </b></center>
+<center><h1> InstaClone: A Simple Social Media Instagram Clone Made in Flutter </h1></center>
+<center><img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/4450f56c-8d7f-4132-b523-b986f841a76e" width="100" heigth="100"></center>
 
 ## Overview
 
