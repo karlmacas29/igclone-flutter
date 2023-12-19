@@ -59,7 +59,7 @@ persons.
 <img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/f86f03aa-8c75-4286-aee6-c7cdbe4e0e71" width="400" heigth="650">
 
 ## User Interface
-<b>Sign In and Sign Up</b>
+- <b>Sign In and Sign Up</b>
 <img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/bb563481-0643-4798-8ec2-64d16ee6680d" width="200" heigth="450">
 <img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/a2cfbb63-7bb8-4c91-a63b-d2691ec557b1" width="200" heigth="450">
 
