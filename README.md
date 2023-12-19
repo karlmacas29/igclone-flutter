@@ -92,3 +92,10 @@ https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 ## Tester (Thanks for testing this app)
 - Me, Karl Macas
 - Michael Joshua Verana Ruña https://web.facebook.com/Vustron.Vustronus
+- My Members
+
+## Members of this Project
+- Llanes, Flaven Charles M.
+- Macas, Karl R.
+- Sala, Johnry D.
+- Selmo, Eve Kent Kennex R
