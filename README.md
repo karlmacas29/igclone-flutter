@@ -17,7 +17,7 @@ UI more accessible, social, unique, fast, and accurate.
 ## Operations
 This app has mostly simple features and to help the user to use this app these
 are the operation of the Instaclone:
-- Sign In and Sign Up
+- <b> Sign In and Sign Up </b>
 Instaclone is required to create a new account for this app. When signing
 in, the user is required to use a valid and unique email and password. When invalid,
 it will display an error that makes sure the user types the correct valid email and
@@ -25,19 +25,19 @@ password. When you sign up, it will require an email, username, password, bio,
 and a profile image for the InstaClone. To sign in, a valid or unique email and
 password are still required. When you sign in or sign up, it will store the
 authentication from Firebase Auth.
-- Feed Screen
+- <b>Feed Screen </b>
 The feed screen in Instaclone is just like Instagram, but Instaclone uses a
 unique UI design and makes it simple and accessible. It has a post feature with
 likes, comments, and descriptions. It has bottom navigation that gives access to
 search, add a post, and profile. It has also been pulled down to refresh the feed
 and see the latest post.
-- Search, Profile and Following
+- <b>Search, Profile and Following </b>
 Searching is just made simple. Searching for users requires only a
 username to find the users they need and to follow their favorite person. When they
 find it, it will show a profile screen of the users and their posts. A profile screen
 displays the user’s bio, username, followers, post count, and posted images. In the
 search screen, include all post images.
-- Post and Comments
+- <b>Post and Comments</b>
 Posting is just like Instagram, but this one requires only one picture per post
 because Instagram is a simple social media site. Posting a picture or gif will show
 up on the feed screen, and it will update and sort the latest posts in the feeds. It is
@@ -46,11 +46,11 @@ also possible to edit only the description of a user's post.
 ## Objectives
 The objective of this mobile app is to develop a simple social media app for
 everyone. Thus, the project’s objective are as follows:
-1. Using Firebase Authentication, Database and Storage – sign in and sign up
+1. <b>Using Firebase Authentication, Database and Storage</b> – sign in and sign up
 the users through the API firebase auth and using database to store the
 description of the users. Storage is used to store images of the users,
 especially their profile image and post.
-2. Social Media Features – These main features used as social media are
+2. <b>Social Media Features</b> – These main features used as social media are
 important for the people who like to post their favorite pictures and comments.
 It also has the following, and followers’ features use to follow their favorite
 persons.
@@ -91,12 +91,12 @@ persons.
 https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 
 ## Tester (Thanks for testing this app)
-- Me, Karl Macas
-- Michael Joshua Verana Ruña https://web.facebook.com/Vustron.Vustronus
+- Karl Macas
+- <a href="https://web.facebook.com/Vustron.Vustronus"> Michael Joshua Verana Ruña </a>
 - My Members
 
 ## Members of this Project
-- Llanes, Flaven Charles M.
+- <a href="https://web.facebook.com/flaven.llanes.5"> Llanes, Flaven Charles M.  </a>
 - Macas, Karl R.
-- Sala, Johnry D.
-- Selmo, Eve Kent Kennex R
+- <a href="https://web.facebook.com/profile.php?id=100095606162665"> Sala, Johnry D. </a>
+- <a href="https://web.facebook.com/evekentkennex.selmo"> Selmo, Eve Kent Kennex R </a>
