@@ -164,6 +164,9 @@ class FirestoreMethod {
       }
 
       res = "success";
+    } on FirebaseException catch (e) {
+      print(e.toString());
+      res = "null";
     } catch (e) {
       print(e.toString());
     }

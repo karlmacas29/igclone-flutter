@@ -18,7 +18,7 @@ class _NotiScreenState extends State<NotiScreen> {
         backgroundColor: primaryColor,
         title: const Text(
           "Notification",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(

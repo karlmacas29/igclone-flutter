@@ -36,7 +36,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     getData();
     _stream = FirebaseFirestore.instance.collection('users').snapshots();
-    _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+    _stream = FirebaseFirestore.instance
+        .collection('posts')
+        .orderBy('datePublished', descending: true)
+        .snapshots();
   }
 
   getData() async {
@@ -77,7 +80,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _refreshData() async {
     setState(() {
       _stream = FirebaseFirestore.instance.collection('users').snapshots();
-      _stream = FirebaseFirestore.instance.collection('posts').snapshots();
+      _stream = FirebaseFirestore.instance
+          .collection('posts')
+          .orderBy('datePublished', descending: true)
+          .snapshots();
     });
   }
 

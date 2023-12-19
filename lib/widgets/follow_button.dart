@@ -24,6 +24,7 @@ class FollowButton extends StatelessWidget {
           onPressed: function,
           child: Container(
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
               color: backgroundColor,
               border: Border.all(color: borderColor),
             ),

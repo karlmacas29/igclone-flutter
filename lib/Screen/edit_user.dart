@@ -54,8 +54,12 @@ class _UpdateUserState extends State<UpdateUser> {
     String res = await FirestoreMethod()
         .updatePicture(widget.uid, widget.oldUrl, _image!);
 
-    if (res != "success") {
+    if (res == "success") {
       showSnackBar("Update Profile Success", context);
+    } else if (res == "null") {
+      setState(() {
+        _isLoading = false;
+      });
     } else {
       showSnackBar(res, context);
     }
@@ -75,7 +79,7 @@ class _UpdateUserState extends State<UpdateUser> {
       _bioCont.text,
     );
 
-    if (res != "success") {
+    if (res == "success") {
       showSnackBar("Update Information Success", context);
     } else {
       showSnackBar(res, context);
