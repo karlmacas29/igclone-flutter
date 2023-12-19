@@ -1,8 +1,5 @@
 <h1 style="text-align: center;"> InstaClone: A Simple Social Media Instagram Clone Made in Flutter </h1>
-<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/4450f56c-8d7f-4132-b523-b986f841a76e" width="300" heigth="300" 
-  style="display: block;
-  margin-left: auto;
-  margin-right: auto;">
+<img src="https://github.com/karlmacas29/igclone-flutter/assets/83496597/4450f56c-8d7f-4132-b523-b986f841a76e" width="300" heigth="300" >
 
 ## Overview
 
@@ -94,4 +91,4 @@ https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 
 ## Tester (Thanks for testing this app)
 - Me, Karl Macas
-- https://web.facebook.com/Vustron.Vustronus
+- Michael Joshua Verana Ruña https://web.facebook.com/Vustron.Vustronus
