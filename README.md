@@ -91,12 +91,12 @@ persons.
 https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 
 ## Tester (Thanks for testing this app)
-- Karl Macas
+- Me
 - <a href="https://web.facebook.com/Vustron.Vustronus"> Michael Joshua Verana Ruña </a>
 - My Members
 
 ## Members of this Project
 - <a href="https://web.facebook.com/flaven.llanes.5"> Llanes, Flaven Charles M.  </a>
-- Macas, Karl R.
+- <a href="https://web.facebook.com/official.karlr.29"> Macas, Karl R. </a>
 - <a href="https://web.facebook.com/profile.php?id=100095606162665"> Sala, Johnry D. </a>
 - <a href="https://web.facebook.com/evekentkennex.selmo"> Selmo, Eve Kent Kennex R </a>
