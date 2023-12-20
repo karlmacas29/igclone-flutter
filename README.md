@@ -98,6 +98,7 @@ https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 ## Members of this Project
 - <a href="https://web.facebook.com/flaven.llanes.5"> Llanes, Flaven Charles M.  </a>
 - <a href="https://web.facebook.com/official.karlr.29"> Macas, Karl R. </a>
+- <a href="https://web.facebook.com/profile.php?id=100009016667662"> Mandras, Art John K. </a>
 - <a href="https://web.facebook.com/profile.php?id=100095606162665"> Sala, Johnry D. </a>
 - <a href="https://web.facebook.com/evekentkennex.selmo"> Selmo, Eve Kent Kennex R </a>
 
