@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .snapshots();
   }
 
-  getData() async {
+  Future<void> getData() async {
     setState(() {
       isLoading = true;
     });
@@ -59,16 +59,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .where('uid', isEqualTo: widget.uid)
           .get();
 
-      postLen = postsnap.docs.length;
-      userData = usersnap.data()!;
-      followers = usersnap.data()!['followers'].length;
-      following = usersnap.data()!['following'].length;
+      setState(() {
+        postLen = postsnap.docs.length;
+        userData = usersnap.data()!;
+        followers = usersnap.data()!['followers'].length;
+        following = usersnap.data()!['following'].length;
 
-      isFollowing = usersnap
-          .data()!['followers']
-          .contains(FirebaseAuth.instance.currentUser!.uid);
-
-      setState(() {});
+        isFollowing = usersnap
+            .data()!['followers']
+            .contains(FirebaseAuth.instance.currentUser!.uid);
+      });
     } catch (e) {
       showSnackBar(e.toString(), context);
     }
@@ -78,12 +78,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _refreshData() async {
+    _stream = FirebaseFirestore.instance.collection('users').snapshots();
+    var usersnap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.uid)
+        .get();
+
+    var postsnap = await FirebaseFirestore.instance
+        .collection('posts')
+        .where('uid', isEqualTo: widget.uid)
+        .get();
+
     setState(() {
-      _stream = FirebaseFirestore.instance.collection('users').snapshots();
-      _stream = FirebaseFirestore.instance
-          .collection('posts')
-          .orderBy('datePublished', descending: true)
-          .snapshots();
+      postLen = postsnap.docs.length;
+      userData = usersnap.data()!;
+      followers = usersnap.data()!['followers'].length;
+      following = usersnap.data()!['following'].length;
+
+      isFollowing = usersnap
+          .data()!['followers']
+          .contains(FirebaseAuth.instance.currentUser!.uid);
     });
   }
 

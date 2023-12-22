@@ -35,14 +35,14 @@ class StorageMethods {
   Future<String> updateImageToStorage(
     String childName,
     String oldUrl,
-    Uint8List file,
+    Uint8List? file,
     bool isPost,
   ) async {
     //delete the old image first
     await deleteImageFromStorage(oldUrl);
 
     //upload the new image
-    return await uploadImageToStorage(childName, file, isPost);
+    return await uploadImageToStorage(childName, file!, isPost);
   }
 
   //delete image

@@ -46,7 +46,9 @@ class _UpdateUserState extends State<UpdateUser> {
     setState(() {
       _isLoading = true;
     });
+
     Uint8List im = await pickImage(ImageSource.gallery, context);
+
     setState(() {
       _image = im;
     });

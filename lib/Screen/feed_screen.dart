@@ -30,12 +30,10 @@ class _FeedScreenState extends State<FeedScreen> {
 
   // Define a function that returns a Future<void> and updates the stream variable
   Future<void> _refreshData() async {
-    setState(() {
-      _stream = FirebaseFirestore.instance
-          .collection('posts')
-          .orderBy('datePublished', descending: true)
-          .snapshots();
-    });
+    _stream = FirebaseFirestore.instance
+        .collection('posts')
+        .orderBy('datePublished', descending: true)
+        .snapshots();
   }
 
   @override
@@ -110,7 +108,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
                 child: snapshot.connectionState == ConnectionState.waiting
                     ? const SkeletalCard()
-                    : snapshot.connectionState == ConnectionState.done
+                    : snapshot.connectionState != ConnectionState.active
                         ? const SkeletalCard()
                         : PostCard(
                             snap: snapshot.data!.docs[index].data(),

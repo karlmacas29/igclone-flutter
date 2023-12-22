@@ -142,7 +142,7 @@ class FirestoreMethod {
     String res = "Some Error Occured";
 
     try {
-      if (file == null) {
+      if (file != null) {
         String photoURl = await StorageMethods()
             .updateImageToStorage('profilePics', oldUrl, file!, false);
         Map<String, dynamic> data = {
