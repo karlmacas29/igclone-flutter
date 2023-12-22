@@ -101,5 +101,4 @@ https://youtu.be/mEPm9w5QlJM?si=ruP7Vd9Aq23Ul3Pb
 - <a href="https://web.facebook.com/profile.php?id=100095606162665"> Sala, Johnry D. </a>
 - <a href="https://web.facebook.com/evekentkennex.selmo"> Selmo, Eve Kent Kennex R </a>
 
-## Apk from App-ver3.1 
-https://github.com/karlmacas29/igclone-flutter/releases/tag/app-ver3.1
+
