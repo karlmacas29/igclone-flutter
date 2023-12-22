@@ -14,6 +14,7 @@ class _NotiScreenState extends State<NotiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: primaryColor,
         title: const Text(

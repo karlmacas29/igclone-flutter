@@ -23,42 +23,42 @@ class AuthMethods {
     required String password,
     required String username,
     required String bio,
-    required Uint8List file,
+    required Uint8List? file,
   }) async {
     String res = "Some Error Occured";
     try {
-      if (email.isNotEmpty ||
-          password.isNotEmpty ||
-          username.isNotEmpty ||
-          bio.isNotEmpty ||
-          // ignore: unnecessary_null_comparison
-          file != null) {
-        //register
-        UserCredential cred = await _auth.createUserWithEmailAndPassword(
-            email: email, password: password);
+      if (email.isNotEmpty && password.isNotEmpty) {
+        if (username.isNotEmpty && bio.isNotEmpty) {
+          if (file != null) {
+            //register
+            UserCredential cred = await _auth.createUserWithEmailAndPassword(
+                email: email, password: password);
 
-        String photoURL = await StorageMethods()
-            .uploadImageToStorage('profilePics', file, false);
-        //add user
-        UserModel user = UserModel(
-          uid: cred.user!.uid,
-          username: username,
-          email: email,
-          bio: bio,
-          followers: [],
-          following: [],
-          photoURL: photoURL,
-        );
+            String photoURL = await StorageMethods()
+                .uploadImageToStorage('profilePics', file, false);
+            //add user
+            UserModel user = UserModel(
+              uid: cred.user!.uid,
+              username: username,
+              email: email,
+              bio: bio,
+              followers: [],
+              following: [],
+              photoURL: photoURL,
+            );
 
-        await _firestore
-            .collection('users')
-            .doc(cred.user!.uid)
-            .set(user.toJson());
+            await _firestore
+                .collection('users')
+                .doc(cred.user!.uid)
+                .set(user.toJson());
 
-        res = "success";
-        // ignore: unnecessary_null_comparison
-      } else if (file == null) {
-        res = "Please Input Your Picture";
+            res = "success";
+          } else {
+            res = "Profile Picture are Required!";
+          }
+        } else {
+          res = "Username and Bio are Required!";
+        }
       } else {
         res = "Please Fill All The Field";
       }
@@ -84,7 +84,7 @@ class AuthMethods {
   }) async {
     String res = "Some Error Occured";
     try {
-      if (email.isNotEmpty || password.isNotEmpty) {
+      if (email.isNotEmpty && password.isNotEmpty) {
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
         res = "success";

@@ -31,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void loginUser() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     setState(() {
       isLoading = true;
     });
@@ -38,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         .loginUser(email: _emailCont.text, password: _passwordCont.text);
 
     if (res == "success") {
-      showSnackBar(res, context);
+      showSnackBar("Sign In Successfully!", context);
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const ResponsiveMode(

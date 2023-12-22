@@ -49,11 +49,34 @@ class _WebViewState extends State<WebView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           centerTitle: false,
-          leading: const Icon(
-            FontAwesomeIcons.instagram,
-            color: Colors.black,
+          leading: const Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Icon(
+                FontAwesomeIcons.instagram,
+                color: Colors.black,
+                size: 30,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                "InstaClone",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'Billabong',
+                  color: Colors.black,
+                ),
+              )
+            ],
           ),
           actions: [
             IconButton(

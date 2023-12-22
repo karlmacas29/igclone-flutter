@@ -138,37 +138,38 @@ class FirestoreMethod {
   }
 
   Future<String> updatePicture(
-      String uid, String oldUrl, Uint8List file) async {
+      String uid, String oldUrl, Uint8List? file) async {
     String res = "Some Error Occured";
 
     try {
-      String photoURl = await StorageMethods()
-          .updateImageToStorage('profilePics', oldUrl, file, false);
-      Map<String, dynamic> data = {
-        'photoURL': photoURl,
-      };
-      await _firestore.collection('users').doc(uid).update(data);
+      if (file == null) {
+        String photoURl = await StorageMethods()
+            .updateImageToStorage('profilePics', oldUrl, file!, false);
+        Map<String, dynamic> data = {
+          'photoURL': photoURl,
+        };
+        await _firestore.collection('users').doc(uid).update(data);
 
-      // Get the post document by uid using where clause
-      QuerySnapshot postQuery = await _firestore
-          .collection('posts')
-          .where('uid', isEqualTo: uid)
-          .get();
+        // Get the post document by uid using where clause
+        QuerySnapshot postQuery = await _firestore
+            .collection('posts')
+            .where('uid', isEqualTo: uid)
+            .get();
 
-      // Check if the query has any documents
-      if (postQuery.docs.isNotEmpty) {
-        for (DocumentSnapshot postDoc in postQuery.docs) {
-          // Update the profImage field with the user's photoURL
-          await postDoc.reference.update({'profImage': photoURl});
+        // Check if the query has any documents
+        if (postQuery.docs.isNotEmpty) {
+          for (DocumentSnapshot postDoc in postQuery.docs) {
+            // Update the profImage field with the user's photoURL
+            await postDoc.reference.update({'profImage': photoURl});
+          }
         }
-      }
 
-      res = "success";
-    } on FirebaseException catch (e) {
-      print(e.toString());
-      res = "null";
+        res = "success";
+      } else {
+        res = "No Picture Selected";
+      }
     } catch (e) {
-      print(e.toString());
+      res = "No Picture Selected";
     }
     return res;
   }

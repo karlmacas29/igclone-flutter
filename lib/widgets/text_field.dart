@@ -18,6 +18,9 @@ class CustomTextInput extends StatelessWidget {
     final inputBorder =
         OutlineInputBorder(borderSide: Divider.createBorderSide(context));
     return TextField(
+      onSubmitted: (value) {
+        FocusManager.instance.primaryFocus?.unfocus(); // dismiss the keyboard
+      },
       controller: textEditingController,
       decoration: InputDecoration(
           hintText: hintText,

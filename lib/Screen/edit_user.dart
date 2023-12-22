@@ -46,21 +46,20 @@ class _UpdateUserState extends State<UpdateUser> {
     setState(() {
       _isLoading = true;
     });
-    Uint8List im = await pickImage(ImageSource.gallery);
+    Uint8List im = await pickImage(ImageSource.gallery, context);
     setState(() {
       _image = im;
     });
 
     String res = await FirestoreMethod()
-        .updatePicture(widget.uid, widget.oldUrl, _image!);
+        .updatePicture(widget.uid, widget.oldUrl, _image);
 
     if (res == "success") {
       showSnackBar("Update Profile Success", context);
-    } else if (res == "null") {
+    } else {
       setState(() {
         _isLoading = false;
       });
-    } else {
       showSnackBar(res, context);
     }
     setState(() {

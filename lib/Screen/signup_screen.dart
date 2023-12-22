@@ -39,13 +39,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void selectImage() async {
-    Uint8List im = await pickImage(ImageSource.gallery);
+    Uint8List im = await pickImage(ImageSource.gallery, context);
     setState(() {
       _image = im;
     });
   }
 
   void signUpUser() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     setState(() {
       _isLoading = true;
     });
@@ -55,21 +56,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: _passwordCont.text,
         username: _usernameCont.text,
         bio: _bioCont.text,
-        file: _image!);
+        file: _image);
+
+    setState(() {
+      _isLoading = false;
+    });
 
     if (res != "success") {
       showSnackBar(res, context);
     } else {
-      showSnackBar(res, context);
+      showSnackBar("Account Created Successfully!", context);
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const ResponsiveMode(
               webScreenLayout: WebView(), mobileScreenLayout: MobileView())));
     }
-
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   void navigateToSignIn() {
@@ -99,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 const Icon(
                   FontAwesomeIcons.instagram,
-                  size: 80,
+                  size: 100,
                 ),
                 const SizedBox(
                   width: 20,
@@ -109,27 +110,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     _image != null
                         ? CircleAvatar(
                             backgroundImage: MemoryImage(_image!),
-                            radius: 40,
+                            backgroundColor: Colors.pink,
+                            radius: 50,
                           )
                         : const CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.grey,
-                            child: Icon(
-                              FontAwesomeIcons.user,
-                              color: Colors.white,
-                              size: 30,
-                            ),
+                            backgroundImage: AssetImage("assets/profile.png"),
+                            backgroundColor: Colors.pink,
+                            radius: 50,
                           ),
                     Positioned(
-                        left: 50,
-                        top: 50,
-                        child: IconButton(
-                          color: primaryColor,
-                          iconSize: 20,
-                          onPressed: selectImage,
-                          icon: const Icon(
-                            FontAwesomeIcons.camera,
-                            color: Colors.pink,
+                        left: 55,
+                        top: 55,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.pink,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: IconButton(
+                            tooltip: 'Upload A Picture',
+                            color: primaryColor,
+                            iconSize: 20,
+                            onPressed: selectImage,
+                            icon: const Icon(
+                              FontAwesomeIcons.camera,
+                              color: Colors.white,
+                            ),
                           ),
                         ))
                   ],

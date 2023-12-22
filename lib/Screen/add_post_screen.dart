@@ -6,6 +6,7 @@ import 'package:igclone/models/user_model.dart';
 import 'package:igclone/providers/user_provider.dart';
 import 'package:igclone/resources/firestore_methods.dart';
 import 'package:igclone/utils/colors.dart';
+import 'package:igclone/utils/dimension.dart';
 import 'package:igclone/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -107,25 +108,27 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
     return _file == null
         ? Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: primaryColor,
-              leading: IconButton(
-                icon: const Icon(
-                  FontAwesomeIcons.arrowLeft,
-                  color: mobileBackground,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: const Text(
-                "Post",
-                style: TextStyle(color: mobileBackground),
-              ),
-              centerTitle: false,
-              automaticallyImplyLeading: true,
-            ),
+            appBar: MediaQuery.of(context).size.width > webScreenSize
+                ? null
+                : AppBar(
+                    elevation: 0,
+                    backgroundColor: primaryColor,
+                    leading: IconButton(
+                      icon: const Icon(
+                        FontAwesomeIcons.arrowLeft,
+                        color: mobileBackground,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    title: const Text(
+                      "Post",
+                      style: TextStyle(color: mobileBackground),
+                    ),
+                    centerTitle: false,
+                    automaticallyImplyLeading: true,
+                  ),
             backgroundColor: const Color.fromRGBO(237, 240, 246, 1),
             body: Center(
                 child: Column(
@@ -134,7 +137,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    Uint8List file = await pickImage(ImageSource.camera);
+                    Uint8List file =
+                        await pickImage(ImageSource.camera, context);
                     setState(() {
                       _file = file;
                     });
@@ -154,7 +158,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    Uint8List file = await pickImage(ImageSource.gallery);
+                    Uint8List file =
+                        await pickImage(ImageSource.gallery, context);
                     setState(() {
                       _file = file;
                     });
